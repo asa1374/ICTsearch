@@ -174,39 +174,26 @@
 	    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 	      <thead>
 	        <tr>
-	          <th>협의기관</th>
-	          <th>사업코드</th>
-	          <th>사업구분</th>
-	     	  <th>사업명</th>
-	     	  <th>접수일</th>
-	     	  <th>완료일</th>
-	     	  <th>입력현황</th>
-	     	  <th>수정일</th>
-	     	  <th>수정입력자</th>
+	          <th>순번</th>
+	          <th>신문사종류</th>
+	          <th>뉴스제목</th>
+	     	  <th>크롤링시간</th>
+	     	  <th>기사등록시간</th>
 	        </tr>
 	      </thead>
 	      <tbody>
-<%--          	<c:forEach var="row" items="${boardDataListVO.list}" varStatus="status"> --%>
+         	<c:forEach var="row" items="${boardDataListVO.list}" varStatus="status">
 				<tr>
-					<td scope="row">1111</td>
-					<td scope="row">1111</td>
-					<td scope="row">1111</td>
+					<td scope="row">${row.no}</td>
+					<td scope="row">${row.newsKind}</td>
 					<td>
-						<a>111111</a>
+						<%-- <a href="/user/boardNotice.do?seq=${row.boardSeq}">${row.boardTitle}</a> --%>
+						<a href="#">${row.title}</a>
 					</td>
-					<td>1</td>
-					<td>1</td>
-					<td>
-						1
-					</td>
-					<td>
-						1
-					</td>
-					<td>
-						1
-					</td>
+					<td>${row.crawlingTime}</td>
+					<td>${row.newsRegistTime}</td>
 				</tr>
-<%-- 			</c:forEach> --%>
+			</c:forEach>
 	      </tbody>
 	    </table>
 	  </div>

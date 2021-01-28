@@ -36,15 +36,7 @@
 	        </tr>
 	      </thead>
 	      <tbody>
-	      	<tr>
-				<td scope="row">1</td>
-				<td>
-					<a>제목1111111111111111111111111</a>
-				</td>
-				<td>222222222222</td>
-				<td>33333333333333</td>
-			</tr>
-         	<%-- <c:forEach var="row" items="${boardDataNoticeListVO.list}" varStatus="status">
+         	<%-- <c:forEach var="row" items="${boardDataListVO.list}" varStatus="status">
 				<tr>
 					<td scope="row">${row.boardSeq}</td>
 					<td>

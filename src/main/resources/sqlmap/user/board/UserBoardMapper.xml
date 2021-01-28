@@ -53,33 +53,15 @@
 	</insert>
 
 	<select id="selectBoardList" parameterType="hMap" resultType="egovMap">
-	SELECT A.*
-	FROM (
-		SELECT  board_seq
-				,board_title
-				,user_id
-				,board_date
-				,board_content
-				,user_auth
-				,file_name
-				,file_size
-				,original_no
-				,group_ord
-				,group_layer
-		FROM 	BOARD_DATA
-	    ORDER BY original_no DESC, group_layer
-		<choose>
-	        <when test="notice != null and notice != ''">
-					LIMIT 5 OFFSET #{startRow}
-					) as A
-	                WHERE   user_auth = 'A'
-	        </when>
-	        <otherwise>
-					LIMIT 10 OFFSET #{startRow}
-					) as A
-	                WHERE   user_auth = 'U'
-	        </otherwise>
-    	</choose>
+		SELECT "no"
+				, url
+				, news_kind
+				, title
+				, contents
+				, crawling_titme
+				, news_regist_time
+				, serch_keyword
+		FROM news_data
 	</select>
 	
 	<select id="selectUserList" parameterType="hMap" resultType="egovMap">
@@ -118,7 +100,7 @@
 	
 	<select id="totalcount" resultType="int">
 		SELECT COUNT(*)
-		FROM BOARD_DATA
+		FROM news_data
 	</select>
 	
 	<select id="layercount" parameterType="hMap" resultType="int">
