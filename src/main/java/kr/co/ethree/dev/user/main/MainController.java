@@ -30,6 +30,7 @@ public class MainController extends BaseAbstractController {
 		session.invalidate();*/
 		System.out.println("메인 접속");
 		
+		Map paramMap = RequestUtil.getRequestMap(request);
 		ListHelperVO boardDataListVO = new ListHelperVO(request);
 		
 		model.addAttribute("boardDataListVO", boardService.getBoardDataListVO(boardDataListVO));

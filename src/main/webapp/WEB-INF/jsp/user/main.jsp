@@ -63,6 +63,28 @@
 			$("#infoForm").attr("action", "/user/eia/view.do");
 			$("#infoForm").submit();
 		} */
+		$(document).ready(function(){
+			
+			$("#replyDtStart").change(function(){
+			    if($('#replyDtStart').val() > $('#replyDtEnd').val()){
+			    	if($('#replyDtEnd').val() != ''){
+				    	$('#replyDtEnd').val($('#replyDtStart').val()).attr("seleted","seleted");
+			    	}
+			    }
+			});
+			
+ 			$("#replyDtEnd").change(function(){
+ 				if($("#replyDtStart").val() > $("#replyDtEnd").val()){
+			    	$('#replyDtStart').val($("#replyDtEnd").val()).attr("seleted","seleted");
+			    }
+			});
+ 			
+ 			$("#title").keydown(function(key) {
+	            if (key.keyCode == 13) {
+	            	goPage(1);
+	            }
+	        });
+		});
 		function goPage(index) {
 			$("#pageIndex").val(index);
 			$("#infoForm").attr("method", "get");
@@ -171,14 +193,52 @@
 <div class="card mb-3">
 	<div class="card-header">
 	  <i class="fas fa-table"></i>
+	  	검색부분
+	</div>
+	<div class="card-body">
+		
+		<div class="table-responsive">
+			 <form name="infoForm" id="infoForm">
+				<input type="hidden" id="pageIndex" name="pageIndex" value="${paramMap.pageIndex}" />
+				<input type="hidden" id="no" name="no"/>
+				
+				
+			<label for="replyDtStart">완료년도</label>	
+			<select id="replyDtStart" name="replyDtStart" style="width:70px;" title="시작 완료년도 선택">
+				<option value="">선택</option>
+				<c:forEach begin="1990" end="1999" varStatus="status">
+					<option <c:if test="${paramMap.replyDtStart eq status.index}">selected</c:if>>${status.index}</option>
+				</c:forEach>
+			</select>
+			<label for="replyDtEnd">~</label>
+			<select id="replyDtEnd" name="replyDtEnd" style="width:70px;" title="마지막 완료년도 선택">
+				<option value="">선택</option>
+				<c:forEach begin="1990" end="1999" varStatus="status">
+					<option <c:if test="${paramMap.replyDtEnd eq status.index}">selected</c:if>>${status.index}</option>
+				</c:forEach>
+			</select>
+				
+				
+			<div style="float: left; margin-right: 10px; margin-top: 3px;">
+				<label>검색   :   </label>
+				<input type="text" id="title" name="title" value="${paramMap.title}" style="width:250px;" title="검색어를 입력하세요" placeholder="검색어를 입력하세요" onkeypress="checkEnterResu(event)">
+			</div>
+			<div class="btn_area">
+				<a href="javascript:goPage(1);" class="btn btn_jsm">검색</a>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="card mb-3">
+	<div class="card-header">
+	  <i class="fas fa-table"></i>
 	  	게시판
 	</div>
 	<div class="card-body">
 	  <div class="table-responsive">
 	    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-	    <form name="infoForm" id="infoForm">
-				<input type="hidden" id="pageIndex" name="pageIndex" value="${paramMap.pageIndex}" />
-				<input type="hidden" id="no" name="no"/>
+	   
 	      <thead>
 	        <tr>
 	          <th>순번</th>
@@ -202,12 +262,13 @@
 				</tr>
 			</c:forEach>
 	      </tbody>
-	      </form>
 	    </table>
 	  </div>
 	</div>
 	<div style="text-align: center;">
-		<ethree:paging listHelperVO="${boardDataListVO}" jsFunction="goPage" />
+		<ul class="paging">
+			<ethree:paging listHelperVO="${boardDataListVO}" jsFunction="goPage" />
+		</ul>
 	</div>
  </div>
 </body>

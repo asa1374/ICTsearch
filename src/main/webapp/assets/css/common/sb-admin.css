@@ -10638,7 +10638,7 @@ body {
   vertical-align: 0;
   border: 0;
   font-weight: 900;
-  content: '\f105';
+  content: '\003E';
   font-family: 'Font Awesome 5 Free';
 }
 
@@ -10911,4 +10911,26 @@ body.sidebar-toggled footer.sticky-footer {
   body.sidebar-toggled footer.sticky-footer {
     width: calc(100% - 90px);
   }
+}
+ul.paging{display:inline-block; font-size:0; }
+ul.paging li{display:inline-block; margin:0 5px; vertical-align:middle; }
+ul.paging li img{vertical-align:middle; }
+ul.paging li a{display:block; width:30px; height:30px; border:1px solid #ddd;  font-size:14px; color:#555555; line-height:28px; font-weight:600; }
+ul.paging li.page_arrow a{display:table-cell; vertical-align:middle;}
+ul.paging li.on{background:#555555; }
+ul.paging li.on a{color:#ffffff; border:1px solid #555;}
+
+.btn_jsm{
+    display: inline-block;
+    width: 70px;
+    height: 35px;
+    background: #093d62;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 400;
+    cursor: pointer;
+    border: none;
+    margin-left: 9px;
+    margin-right: 10px;
 }

@@ -63,7 +63,9 @@
 				, news_regist_time
 				, serch_keyword
 		FROM news_data
-		ORDER BY "no" asc
+		WHERE 1=1 
+		<include refid="whereSelectBoardList" />
+		ORDER BY "no"
 		<include refid="pagingEnd" />
 	</select>
 	
@@ -103,6 +105,8 @@
 	<select id="totalcount" resultType="int">
 		SELECT COUNT(*)
 		FROM news_data
+		WHERE 1=1
+		<include refid="whereSelectBoardList" />
 	</select>
 	
 	<select id="layercount" parameterType="hMap" resultType="int">
@@ -143,6 +147,12 @@
 		FROM BOARD_DATA 
 		WHERE board_seq = #{seq}
 	</delete>
+	
+	<sql id="whereSelectBoardList">
+		<if test="title != null and title != ''">
+			AND title LIKE '%${title}%'
+		</if>
+	</sql>
 	
 
 </mapper>

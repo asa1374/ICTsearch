@@ -7,7 +7,7 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import kr.co.ethree.dev.common.model.ListHelperVO;
 
-public class PagingTag extends SimpleTagSupport {
+public class PagingTag2 extends SimpleTagSupport {
 
 	private ListHelperVO listHelperVO = null;
 
@@ -115,14 +115,14 @@ public class PagingTag extends SimpleTagSupport {
 		int pageIndex = this.pageIndex;
 		int cntPerPage = this.cntPerPage;
 		int cntPerblock = this.cntPerblock;
-		
+
 		if (this.listHelperVO != null) {
 			totalCount = this.listHelperVO.getTotalCount();		// 전체 목록 수
 			pageIndex = this.listHelperVO.getPageIndex(); 			// 현재 페이지 번호
 			cntPerPage = this.listHelperVO.getCntPerPage(); 		// 페이징 표시 수
 			cntPerblock = this.listHelperVO.getCntPerblock(); 	// 페이지당 목록 수
 		}
-		
+
 		if (0 >= totalCount) {
 			return;
 		}
@@ -147,57 +147,62 @@ public class PagingTag extends SimpleTagSupport {
 		 * 맨앞으로 버튼
 		 */
 		if (pageIndex != 1 && firstPage > cntPerblock) {
-			paging.append("<li class='page_arrow'><a href='javascript:").append(jsFunction).append("(").append(1).append(");'>");
-			paging.append("<img src='/assets/images/sub/btn_first.jpg' alt='처음페이지' />");
-			paging.append("</a></li>");
-
+			paging.append("<a href='javascript:").append(jsFunction).append("(").append(1).append(");' class='btn_first'>맨앞으로</a>");
 		}
+
 		/**
 		 * 이전버튼
 		 */
 		if (firstPage > cntPerblock) {
-			paging.append("<li class='page_arrow'><a href='javascript:").append(jsFunction).append("(").append(firstPage - 1).append(");' >");
-			paging.append("<img src='/assets/images/sub/btn_prev.jpg' alt='이전 페이지' />");
-			paging.append("</a></li>");
-
+			paging.append("<a href='javascript:").append(jsFunction).append("(").append(firstPage - 1).append(");' class='btn_prev'>이전</a>");
 		}
+
+		paging.append("<span>");
 
 		/**
 		 * 페이지 넘버링
 		 */
 		for (int i = firstPage; i <= lastPage; i++) {
 			if (pageIndex == i) {
-				paging.append("<li class ='on'><a href='javascript:").append(jsFunction).append("(").append(i).append(");'>");
-				paging.append(i);
-				paging.append("</a></li>");
+				paging.append("<strong><span>").append(i).append("</span></strong>");
 
 			} else {
-				paging.append("<li><a href='javascript:").append(jsFunction).append("(").append(i).append(");'>");
-				paging.append(i);
-				paging.append("</a></li>");
-				
+				if (this.listHelperVO != null && (this.jsFunction == null || this.jsFunction.length() == 0)) {
+
+					String url = this.listHelperVO.getUrl();
+					String urlParam = "?" + this.listHelperVO.getPageParamName() + "=" + i;
+
+					if (this.listHelperVO.getUrlParam() != null && this.listHelperVO.getUrlParam().length() > 0) {
+						urlParam += "&";
+						urlParam += this.listHelperVO.getUrlParam();
+					}
+
+					paging.append("<a href='").append(url).append(urlParam).append("' class='btn_paging'>");
+					paging.append("<span>").append(i).append("</span>");
+					paging.append("</a>");
+
+				} else {
+					paging.append("<a href='javascript:").append(jsFunction).append("(").append(i).append(");' class='btn_paging'>");
+					paging.append("<span>").append(i).append("</span>");
+					paging.append("</a>");
+				}
 			}
 		}
 
+		paging.append("</span>");
 
 		/**
 		 * 다음 버튼
 		 */
 		if (totalPage > lastPage) {
-			paging.append("<li class='page_arrow'><a href='javascript:").append(jsFunction).append("(").append(lastPage + 1).append(");'>");
-			paging.append("<img src='/assets/images/sub/btn_next.jpg' alt='다음 페이지' />");
-			paging.append("</a></li>");
-
+			paging.append("<a href='javascript:").append(jsFunction).append("(").append(lastPage + 1).append(");' class='btn_next'>다음</a>");
 		}
 
 		/**
 		 * 맨 뒤로 버튼
 		 */
 		if (totalPage > lastPage && pageIndex != totalPage) {
-			paging.append("<li class='page_arrow'><a href='javascript:").append(jsFunction).append("(").append(totalPage).append(");'>");
-			paging.append("<img src='/assets/images/sub/btn_last.jpg' alt='마지막 페이지' />");
-			paging.append("</a></li>");
-
+			paging.append("<a href='javascript:").append(jsFunction).append("(").append(totalPage).append(");' class='btn_last'>맨뒤로</a>");
 		}
 
 		getJspContext().getOut().write(paging.toString());
