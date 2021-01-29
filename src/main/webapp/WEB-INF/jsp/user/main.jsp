@@ -202,7 +202,7 @@
 				<input type="hidden" id="pageIndex" name="pageIndex" value="${paramMap.pageIndex}" />
 				<input type="hidden" id="no" name="no"/>
 				
-				
+			<!-- 	
 			<label for="replyDtStart">완료년도</label>	
 			<select id="replyDtStart" name="replyDtStart" style="width:70px;" title="시작 완료년도 선택">
 				<option value="">선택</option>
@@ -217,6 +217,7 @@
 					<option <c:if test="${paramMap.replyDtEnd eq status.index}">selected</c:if>>${status.index}</option>
 				</c:forEach>
 			</select>
+			 -->
 				
 				
 			<div style="float: left; margin-right: 10px; margin-top: 3px;">
