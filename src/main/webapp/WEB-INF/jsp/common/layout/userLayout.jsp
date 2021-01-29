@@ -29,17 +29,19 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="/main.do" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>
-          <span>공지사항</span>
+          <span>웹크롤링 데이터 검색</span>
         </a>
       </li>
+      <!-- 
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>자유게시판11</span>
          </a>
       </li>
+       -->
 	  <c:choose>
          <c:when test = "${auth eq 'U'}">
 	         <li class="nav-item">

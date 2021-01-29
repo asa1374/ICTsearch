@@ -33,20 +33,25 @@ public class MainController extends BaseAbstractController {
 		ListHelperVO boardDataListVO = new ListHelperVO(request);
 		
 		model.addAttribute("boardDataListVO", boardService.getBoardDataListVO(boardDataListVO));
+		model.addAttribute("paramMap", boardDataListVO.getParamMap());
 		
 		return "user/main";
 	}
-	@RequestMapping("/login.do")
-	public String login(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
-		return "user/login";
+	
+	@RequestMapping("/view.do")
+	public String view(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+		System.out.println("상세 접속");
+		
+		Map paramMap = RequestUtil.getRequestMap(request);
+		paramMap.put("no", Integer.parseInt((String) paramMap.get("no")));
+		
+		Map boardData = boardService.selectBoardOne(paramMap);
+		
+		model.addAttribute("boardData",boardData);
+		
+		
+		return "user/view";
 	}
-	@RequestMapping("/admin.do")
-	public String adminlogin(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
-		return "user/admin/login";
-	}
-	@RequestMapping("/register.do")
-	public String register(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
-		return "user/register";
-	}
+	
 
 }

@@ -45,12 +45,7 @@
 			
 		});
 	
-		function goPage(index) {
-			$("#pageIndex").val(index);
-			$("#infoForm").attr("method", "get");
-			$("#infoForm").attr("action", "/user/boardList.do");
-			$("#infoForm").submit();
-		}
+		
 		
 		function writeData(eiaCode) {
 			$("#eiaCode").val(eiaCode);
@@ -68,22 +63,26 @@
 			$("#infoForm").attr("action", "/user/eia/view.do");
 			$("#infoForm").submit();
 		} */
+		function goPage(index) {
+			$("#pageIndex").val(index);
+			$("#infoForm").attr("method", "get");
+			$("#infoForm").attr("action", "/main.do");
+			$("#infoForm").submit();
+		}
+		
 	</script>
 </head>
 <body>
+<!-- 
 <div class="card mb-3">
 	<div class="card-header">
 	  <i class="fas fa-table"></i>
 	  	검색부분
 	</div>
 	<div class="card-body">
+		
 		<div class="table-responsive">
-			<form name="infoForm" id="infoForm">
-				<input type="hidden" id="pageIndex" name="pageIndex" value="${paramMap.pageIndex}" />
-		  		<input type="hidden" id="eiaGubunCd" name="eiaGubunCd" value="${paramMap.eiaGubunCd}" />
-		  		<input type="hidden" id="sideMenu" name="sideMenu" value="${paramMap.sideMenu}" />
-		  		<input type="hidden" id="eiaCode" name="eiaCode" />
-		  		<input type="hidden" id="eiaNm" name="eiaNm" />
+			
 				<table class="table_style5 mb10" >
 				<colgroup>
 				<col style="width:100px;">
@@ -91,6 +90,7 @@
 				<col style="width:115px;">
 				<col style="width:auto;">
 				</colgroup>
+				
 				<tbody>
 					<tr>
 						<th scope="row"><label for="discOrgan">기관명</label></th>
@@ -153,8 +153,10 @@
 							</select>
 						</td>
 					</tr>
+					 
 					</tbody>
 				</table>
+				
 				<div class="btn_area">
 					<div class="fl_r" style="float: right;">
 						<a href="javascript:goPage(1);" class="btn btn-primary">검색</a>
@@ -163,7 +165,9 @@
 		  	</form>
 		</div>
 	</div>
+	
 </div>
+-->
 <div class="card mb-3">
 	<div class="card-header">
 	  <i class="fas fa-table"></i>
@@ -172,6 +176,9 @@
 	<div class="card-body">
 	  <div class="table-responsive">
 	    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	    <form name="infoForm" id="infoForm">
+				<input type="hidden" id="pageIndex" name="pageIndex" value="${paramMap.pageIndex}" />
+				<input type="hidden" id="no" name="no"/>
 	      <thead>
 	        <tr>
 	          <th>순번</th>
@@ -188,13 +195,14 @@
 					<td scope="row">${row.newsKind}</td>
 					<td>
 						<%-- <a href="/user/boardNotice.do?seq=${row.boardSeq}">${row.boardTitle}</a> --%>
-						<a href="#">${row.title}</a>
+						 <a href="/view.do?no=${row.no}">${row.title}</a>
 					</td>
 					<td>${row.crawlingTime}</td>
 					<td>${row.newsRegistTime}</td>
 				</tr>
 			</c:forEach>
 	      </tbody>
+	      </form>
 	    </table>
 	  </div>
 	</div>

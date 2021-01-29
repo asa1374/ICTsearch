@@ -53,15 +53,18 @@
 	</insert>
 
 	<select id="selectBoardList" parameterType="hMap" resultType="egovMap">
+		<include refid="pagingStr" />
 		SELECT "no"
 				, url
 				, news_kind
 				, title
 				, contents
-				, crawling_titme
+				, crawling_time
 				, news_regist_time
 				, serch_keyword
 		FROM news_data
+		ORDER BY "no" asc
+		<include refid="pagingEnd" />
 	</select>
 	
 	<select id="selectUserList" parameterType="hMap" resultType="egovMap">
@@ -85,17 +88,16 @@
 	</select>
 	
 	<select id="selectBoardOne" parameterType="hMap" resultType="egovMap">
-		SELECT  board_seq
-				, board_title
-				, board_content
-				, user_id
-				, file_name
-				, file_size
-				,group_layer
-				,original_no
-				,group_ord
-		FROM 	BOARD_DATA
-		WHERE 	board_seq = #{seq}
+		SELECT "no"
+				, url
+				, news_kind
+				, title
+				, contents
+				, crawling_time
+				, news_regist_time
+				, serch_keyword
+		FROM 	news_data
+		WHERE 	no = #{no}
 	</select>
 	
 	<select id="totalcount" resultType="int">
