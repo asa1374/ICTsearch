@@ -10934,3 +10934,9 @@ ul.paging li.on a{color:#ffffff; border:1px solid #555;}
     margin-left: 9px;
     margin-right: 10px;
 }
+
+.search_box{
+	float: left;
+    margin-top: 3px;
+    height: 35px;
+}

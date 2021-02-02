@@ -149,8 +149,30 @@
 	</delete>
 	
 	<sql id="whereSelectBoardList">
+		<!-- 제목 검색 -->
 		<if test="title != null and title != ''">
 			AND title LIKE '%${title}%'
+		</if>
+		
+		<!-- 기사등록년도 검색 -->
+		<if test="replyDtStart != null and replyDtStart != ''">
+			<if test="replyDtEnd != null and replyDtEnd != ''">
+				<![CDATA[
+				AND SUBSTR(news_regist_time,1,4) BETWEEN #{replyDtStart} AND #{replyDtEnd}
+				]]>
+			</if>
+			<if test="replyDtEnd == null and replyDtEnd == ''">
+				<![CDATA[
+				AND SUBSTR(news_regist_time,1,4) >= #{replyDtStart}
+				]]>
+			</if>
+		</if>
+		<if test="replyDtEnd != null and replyDtEnd != ''">
+			<if test="replyDtStart == null and replyDtStart == ''">
+				<![CDATA[
+				AND SUBSTR(news_regist_time,1,4) <= #{replyDtEnd}
+				]]>
+			</if>
 		</if>
 	</sql>
 	

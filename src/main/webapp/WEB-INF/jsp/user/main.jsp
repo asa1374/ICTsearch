@@ -64,7 +64,6 @@
 			$("#infoForm").submit();
 		} */
 		$(document).ready(function(){
-			
 			$("#replyDtStart").change(function(){
 			    if($('#replyDtStart').val() > $('#replyDtEnd').val()){
 			    	if($('#replyDtEnd').val() != ''){
@@ -86,6 +85,17 @@
 	        });
 		});
 		function goPage(index) {
+			
+			if($("#replyDtStart").val() !== "" || $("#replyDtEnd").val() !== ""){
+				if ($("#replyDtStart").val() === "") {
+					alert("기간 시작년도를 선택해주세요");
+					return;
+				} else if ($("#replyDtEnd").val() === "") {
+					alert("기간 마지막년도를 선택해주세요");
+					return;
+				}
+			}
+			
 			$("#pageIndex").val(index);
 			$("#infoForm").attr("method", "get");
 			$("#infoForm").attr("action", "/main.do");
@@ -202,25 +212,26 @@
 				<input type="hidden" id="pageIndex" name="pageIndex" value="${paramMap.pageIndex}" />
 				<input type="hidden" id="no" name="no"/>
 				
-			<!-- 	
-			<label for="replyDtStart">완료년도</label>	
-			<select id="replyDtStart" name="replyDtStart" style="width:70px;" title="시작 완료년도 선택">
-				<option value="">선택</option>
-				<c:forEach begin="1990" end="1999" varStatus="status">
-					<option <c:if test="${paramMap.replyDtStart eq status.index}">selected</c:if>>${status.index}</option>
-				</c:forEach>
-			</select>
-			<label for="replyDtEnd">~</label>
-			<select id="replyDtEnd" name="replyDtEnd" style="width:70px;" title="마지막 완료년도 선택">
-				<option value="">선택</option>
-				<c:forEach begin="1990" end="1999" varStatus="status">
-					<option <c:if test="${paramMap.replyDtEnd eq status.index}">selected</c:if>>${status.index}</option>
-				</c:forEach>
-			</select>
-			 -->
+			<div class="search_box" style="margin-top: 6px; margin-right:30px;">
+				<label for="replyDtStart">기사등록기간  :  </label>	
+				<select id="replyDtStart" name="replyDtStart" style="width:70px;" title="시작 등록년도 선택">
+					<option value="">선택</option>
+					<c:forEach begin="1990" end="1999" varStatus="status">
+						<option <c:if test="${paramMap.replyDtStart eq status.index}">selected</c:if>>${status.index}</option>
+					</c:forEach>
+				</select>
+				<label for="replyDtEnd">~</label>
+				<select id="replyDtEnd" name="replyDtEnd" style="width:70px;" title="마지막  등록년도 선택">
+					<option value="">선택</option>
+					<c:forEach begin="1990" end="1999" varStatus="status">
+						<option <c:if test="${paramMap.replyDtEnd eq status.index}">selected</c:if>>${status.index}</option>
+					</c:forEach>
+				</select>
+			</div>
+			
 				
 				
-			<div style="float: left; margin-right: 10px; margin-top: 3px;">
+			<div class="search_box">
 				<label>검색   :   </label>
 				<input type="text" id="title" name="title" value="${paramMap.title}" style="width:250px;" title="검색어를 입력하세요" placeholder="검색어를 입력하세요" onkeypress="checkEnterResu(event)">
 			</div>
@@ -246,7 +257,7 @@
 	          <th>신문사종류</th>
 	          <th>뉴스제목</th>
 	     	  <th>크롤링시간</th>
-	     	  <th>기사등록시간</th>
+	     	  <th>기사등록일자</th>
 	        </tr>
 	      </thead>
 	      <tbody>
