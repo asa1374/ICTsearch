@@ -84,6 +84,7 @@
 	            }
 	        });
 		});
+		
 		function goPage(index) {
 			
 			if($("#replyDtStart").val() != "" || $("#replyDtEnd").val() != ""){
@@ -100,6 +101,13 @@
 			$("#infoForm").attr("method", "get");
 			$("#infoForm").attr("action", "/main.do");
 			$("#infoForm").submit();
+		}
+		
+		function clear(){
+			$("#news_kind option:eq(0)").prop("selected", "selected");
+			$("#replyDtStart option:eq(0)").prop("selected", "selected");
+			$("#replyDtEnd option:eq(0)").prop("selected", "selected");
+			$("#title").val("");
 		}
 		
 	</script>
@@ -272,6 +280,7 @@
 				</div>
 				<div class="btn_area">
 					<a href="javascript:goPage(1);" class="btn btn_jsm">검색</a>
+					<a href="javascript:clear();" class="btn btn_jsm">조건비우기</a>
 				</div>
 			</form>
 			

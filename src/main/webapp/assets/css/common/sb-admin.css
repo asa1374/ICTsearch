@@ -10922,7 +10922,7 @@ ul.paging li.on a{color:#ffffff; border:1px solid #555;}
 
 .btn_jsm{
     display: inline-block;
-    width: 70px;
+    width: auto;
     height: 35px;
     background: #093d62;
     text-align: center;
@@ -10932,7 +10932,10 @@ ul.paging li.on a{color:#ffffff; border:1px solid #555;}
     cursor: pointer;
     border: none;
     margin-left: 9px;
-    margin-right: 10px;
+}
+
+a.btn.btn_jsm:hover {
+    color: white;
 }
 
 .search_box{
