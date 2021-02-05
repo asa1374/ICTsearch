@@ -95,7 +95,6 @@
 					return;
 				}
 			}
-			
 			$("#pageIndex").val(index);
 			$("#infoForm").attr("method", "get");
 			$("#infoForm").attr("action", "/main.do");
