@@ -15,8 +15,8 @@
   <title>ICT</title>
 
 	<script type="text/javascript">
-		/* $(document).ready(function(){ ㅋㅋㅋㅋㅋㅋㅋㅋㅋ
-			
+		/* $(document).ready(function(){ ㅋㅋㅋㅋㅋㅋㅋㅋㅋㄴㅇㄹㄴㅇㄹㄴ
+			ㄴㅇㄹㄴㅇㄹㄴㅇㄹ
 			$("#replyDtStart").change(function(){
 			    if($('#replyDtStart').val() > $('#replyDtEnd').val()){
 			    	if($('#replyDtEnd').val() != ''){
