@@ -15,7 +15,6 @@
   <title>ICT</title>
 
 	<script type="text/javascript">
-		/**/
 		/* $(document).ready(function(){
 			
 			$("#replyDtStart").change(function(){
