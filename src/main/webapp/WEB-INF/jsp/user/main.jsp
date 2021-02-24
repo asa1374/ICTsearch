@@ -192,10 +192,10 @@
 	      <thead>
 	        <tr>
 	          <th style="width: 80px;">순번</th>
-	     	  <th style="width: ;">사업유형</th>
-	     	  <th style="width: ;">평가항목</th>
 	          <th style="width: 150px;">신문사종류</th>
 	          <th>뉴스제목</th>
+	     	  <th style="width: 200px;">사업유형</th>
+	     	  <th style="width: 200px;">평가항목</th>
 	     	  <th style="width: 130px;">크롤링시간</th>
 	     	  <th style="width: 130px;">기사등록일자</th>
 	        </tr>
@@ -204,13 +204,13 @@
          	<c:forEach var="row" items="${boardDataListVO.list}" varStatus="status">
 				<tr>
 					<td scope="row">${row.no}</td>
-					<td scope="row">${row.bizType}</td>
-					<td scope="row">${row.evalItem}</td>
 					<td scope="row">${row.newsKind}</td>
 					<td>
 						<%-- <a href="/user/boardNotice.do?seq=${row.boardSeq}">${row.boardTitle}</a> --%>
 						 <a href="/view.do?no=${row.no}">${row.title}</a>
 					</td>
+					<td scope="row">${row.bizType}</td>
+					<td scope="row">${row.evalItem}</td>
 					<td>${row.crawlingTime}</td>
 					<td>${row.newsRegistTime}</td>
 				</tr>
