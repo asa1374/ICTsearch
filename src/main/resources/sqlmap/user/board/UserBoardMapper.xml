@@ -173,6 +173,11 @@
 			AND title LIKE '%${title}%'
 		</if>
 		
+		<!-- 뉴스사 검색 -->
+		<if test="news_kind != null and news_kind != ''">
+			AND news_kind = #{news_kind}
+		</if>
+		
 		<!-- 기사등록년도 검색 -->
 		<if test="replyDtStart != null and replyDtStart != ''">
 			<if test="replyDtEnd != null and replyDtEnd != ''">
