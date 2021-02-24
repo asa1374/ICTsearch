@@ -1,5 +1,6 @@
 package kr.co.ethree.dev.user.main;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,7 @@ public class MainController extends BaseAbstractController {
 		System.out.println("메인 접속");
 		
 		Map paramMap = RequestUtil.getRequestMap(request);
+		System.out.println("paramMap   ::  " + paramMap);
 		ListHelperVO boardDataListVO = new ListHelperVO(request);
 		
 		model.addAttribute("boardDataListVO", boardService.getBoardDataListVO(boardDataListVO));
@@ -39,16 +41,17 @@ public class MainController extends BaseAbstractController {
 		return "user/main";
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping("/view.do")
 	public String view(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
-		System.out.println("상세 접속");
-		
 		Map paramMap = RequestUtil.getRequestMap(request);
 		paramMap.put("no", Integer.parseInt((String) paramMap.get("no")));
 		
 		Map boardData = boardService.selectBoardOne(paramMap);
+		List subDataList = boardService.selectSubDataList(paramMap);
 		
 		model.addAttribute("boardData",boardData);
+		model.addAttribute("subDataList",subDataList);
 		
 		
 		return "user/view";

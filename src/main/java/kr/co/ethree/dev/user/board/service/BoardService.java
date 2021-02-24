@@ -11,6 +11,7 @@ public interface BoardService {
 	public ListHelperVO getUserListVO(ListHelperVO listHelperVO) throws Exception;
 	public List selectBoardNoticeList() throws Exception;
 	public Map selectBoardOne(Map paramMap) throws Exception;
+	public List selectSubDataList(Map paramMap) throws Exception;
 	public int totalcount() throws Exception;
 	// 다음글의 순서를 위해 count로 갯수를 확인함.
 	public int layercount(Map paramMap) throws Exception;

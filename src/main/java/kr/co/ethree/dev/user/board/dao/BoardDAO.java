@@ -21,6 +21,9 @@ public class BoardDAO extends BaseAbstractDAO{
 	public Map selectBoardOne(Map paramMap) throws Exception {
 		return (Map) sqlSession.selectOne("userBoardMapper.selectBoardOne",paramMap);
 	}
+	public List selectSubDataList(Map paramMap) throws Exception {
+		return (List) sqlSession.selectList("userBoardMapper.selectSubDataList",paramMap);
+	}
 	public List selectBoardNoticeList() throws Exception {
 		return (List) sqlSession.selectList("userBoardMapper.selectBoardNoticeList");
 	}

@@ -25,6 +25,12 @@ public class BoardServiceImpl extends BaseAbstractServiceImpl implements BoardSe
 		return boardDao.selectBoardOne(paramMap);
 	}
 
+	@SuppressWarnings("unused")
+	@Override
+	public List selectSubDataList(Map paramMap) throws Exception {
+		return boardDao.selectSubDataList(paramMap);
+	}
+	
 	@Override
 	public List selectBoardNoticeList() throws Exception {
 		return boardDao.selectBoardNoticeList();

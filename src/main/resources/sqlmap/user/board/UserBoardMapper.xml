@@ -62,7 +62,9 @@
 				, crawling_time
 				, news_regist_time
 				, serch_keyword
-		FROM news_data
+				, biz_type
+				, eval_item
+		FROM news_data_sum_1990_1999
 		WHERE 1=1 
 		<include refid="whereSelectBoardList" />
 		ORDER BY "no"
@@ -89,6 +91,21 @@
 		ORDER BY board_seq desc
 	</select>
 	
+	<select id="selectSubDataList" parameterType="hMap" resultType="egovMap">
+		SELECT a."no"
+				, b."name"
+				, searchkeyword
+				, "type"
+				, (length(contents) - length(replace(contents,b.searchkeyword,'')))/length(b.searchkeyword) "count"
+		FROM news_data_sum_1990_1999 a  
+			LEFT JOIN (SELECT ct.searchkeyword,cc."name",cc."type" 
+						FROM com_text ct,com_code cc 
+						WHERE CAST(ct.com_code_no as smallint) = cc."no") b 
+					ON a.contents like CONCAT('%',b.searchkeyword,'%')
+		WHERE "no" = #{no}
+		ORDER BY "type", "count" desc, b."name", serch_keyword
+	</select>
+	
 	<select id="selectBoardOne" parameterType="hMap" resultType="egovMap">
 		SELECT "no"
 				, url
@@ -98,7 +115,9 @@
 				, crawling_time
 				, news_regist_time
 				, serch_keyword
-		FROM 	news_data
+				, biz_type
+				, eval_item
+		FROM 	news_data_sum_1990_1999
 		WHERE 	no = #{no}
 	</select>
 	
